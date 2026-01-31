@@ -1,0 +1,8 @@
+/* You can leave this almost empty or add small overrides */
+body {
+  @apply antialiased;
+}
+
+img {
+  @apply max-w-full h-auto;
+}

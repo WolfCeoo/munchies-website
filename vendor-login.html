@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vendor Login - Munchies</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { /* same as above */ }</script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 min-h-screen flex items-center justify-center">
+
+  <div class="w-full max-w-md p-8 bg-white dark:bg-gray-800 rounded-xl shadow-xl">
+    <img src="assets/logo.png" alt="Munchies" class="mx-auto h-20 mb-6">
+    <h1 class="text-3xl font-bold text-center text-munchies-green mb-8">Vendor Portal</h1>
+    
+    <form class="space-y-6">
+      <input type="email" placeholder="Email" class="w-full p-4 rounded-lg border border-gray-300 dark:border-gray-600 bg-transparent focus:outline-none focus:border-munchies-orange">
+      <input type="password" placeholder="Password" class="w-full p-4 rounded-lg border border-gray-300 dark:border-gray-600 bg-transparent focus:outline-none focus:border-munchies-orange">
+      <button type="submit" class="w-full bg-munchies-orange hover:bg-orange-600 text-white font-bold py-4 rounded-lg transition">
+        Login
+      </button>
+    </form>
+    
+    <p class="text-center mt-6 text-sm text-gray-500">Food Ready Dashboard access</p>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Order Status - Munchies</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { /* same config as above */ }
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-white dark:bg-gray-950 min-h-screen">
+
+  <div class="max-w-md mx-auto px-4 py-12">
+    <a href="index.html" class="text-munchies-orange font-bold mb-8 inline-block">← Back to Menu</a>
+    
+    <h1 class="text-4xl font-bold text-center mb-10 text-munchies-green">Your Order Status</h1>
+
+    <div class="space-y-8">
+      <div class="flex items-center">
+        <div class="flex-shrink-0 w-14 h-14 rounded-full bg-munchies-orange/20 border-2 border-munchies-orange flex items-center justify-center text-munchies-orange text-2xl">1</div>
+        <div class="ml-4 flex-1">
+          <p class="font-bold text-lg">Received</p>
+          <p class="text-gray-500">Your order is with us!</p>
+        </div>
+      </div>
+
+      <div class="h-10 border-l-4 border-gray-300 ml-7"></div>
+
+      <div class="flex items-center opacity-50">
+        <div class="flex-shrink-0 w-14 h-14 rounded-full bg-gray-200 dark:bg-gray-700 border-2 border-gray-400 flex items-center justify-center text-gray-500 text-2xl">2</div>
+        <div class="ml-4 flex-1">
+          <p class="font-bold text-lg">Preparing</p>
+        </div>
+      </div>
+
+      <div class="h-10 border-l-4 border-gray-300 ml-7"></div>
+
+      <div class="flex items-center opacity-50">
+        <div class="flex-shrink-0 w-14 h-14 rounded-full bg-gray-200 dark:bg-gray-700 border-2 border-gray-400 flex items-center justify-center text-gray-500 text-2xl">3</div>
+        <div class="ml-4 flex-1">
+          <p class="font-bold text-lg">Out for Delivery</p>
+        </div>
+      </div>
+
+      <div class="h-10 border-l-4 border-gray-300 ml-7"></div>
+
+      <div class="flex items-center opacity-50">
+        <div class="flex-shrink-0 w-14 h-14 rounded-full bg-gray-200 dark:bg-gray-700 border-2 border-gray-400 flex items-center justify-center text-gray-500 text-2xl">4</div>
+        <div class="ml-4 flex-1">
+          <p class="font-bold text-lg">Delivered</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 text-center">
+      <p class="text-xl font-bold mb-4">Live Map (Coming Soon)</p>
+      <div class="bg-gray-200 dark:bg-gray-800 h-64 rounded-xl flex items-center justify-center">
+        Google Maps Placeholder
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
