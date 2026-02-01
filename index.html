@@ -24,6 +24,80 @@
       }
     }
   </script>
+  <!-- Airtable SDK CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/airtable/0.11.6/airtable.min.js"></script>
+
+<script>
+  // === CONFIG - REPLACE THESE ===
+  const AIRTABLE_TOKEN = 'patdfiQ8AuEMlV9Sp.0d6e9d216168530d137faf5eb4dd7ae0c288d78bdbe0dff580d01e72398ffc30E';  // ← Paste your NEW read-only token
+  const BASE_ID = 'appdqBZtxDVSZmG0Z';             // Your base ID
+  const TABLE_NAME = 'Menu Items';                 // Confirm exact name (from Airtable); might be "Menu Items" or similar
+
+  // Initialize Airtable
+  const Airtable = window.Airtable;
+  Airtable.configure({ apiKey: AIRTABLE_TOKEN });
+  const base = Airtable.base(BASE_ID);
+
+  // Function to fetch and display menu items grouped by vendor
+  async function loadVendorMenus() {
+    try {
+      const records = await base(TABLE_NAME).select({
+        view: 'Grid view',  // Or change to your preferred view name if needed
+        // Optional: fields: ['Item Name Name', 'Vendor'] if you want to limit columns
+      }).all();
+
+      // Group items by Vendor (assuming "Vendor" is a linked field returning array or string)
+      const vendorGroups = {};
+      records.forEach(record => {
+        const vendorField = record.get('Vendor');  // Adjust field name if different (e.g. 'Vendor' or 'VENDOR')
+        const vendorName = Array.isArray(vendorField) ? vendorField[0] : vendorField; // Handle linked record (often array)
+
+        if (vendorName) {
+          if (!vendorGroups[vendorName]) {
+            vendorGroups[vendorName] = [];
+          }
+          vendorGroups[vendorName].push(record.get('Item Name')); // Adjust to your exact "Item Name" field name
+        }
+      });
+
+      // Now inject into the DOM - find each vendor card by matching h3 text
+      const vendorCards = document.querySelectorAll('.grid > a'); // Targets your <a> vendor cards
+      vendorCards.forEach(card => {
+        const vendorTitle = card.querySelector('h3').textContent.trim();
+        if (vendorGroups[vendorTitle]) {
+          const items = vendorGroups[vendorTitle];
+          const ul = document.createElement('ul');
+          ul.className = 'mt-4 space-y-1 text-sm text-gray-600 dark:text-gray-400';
+          items.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = `• ${item}`;
+            ul.appendChild(li);
+          });
+          // Insert after the existing ul or at the end of card content
+          const existingUl = card.querySelector('ul');
+          if (existingUl) {
+            existingUl.after(ul);
+          } else {
+            card.querySelector('div.p-5').appendChild(ul);
+          }
+          // Optional label
+          const label = document.createElement('p');
+          label.className = 'mt-3 text-xs text-munchies-green font-semibold';
+          label.textContent = 'Live items from Airtable:';
+          card.querySelector('div.p-5').appendChild(label);
+        }
+      });
+
+      console.log('Menu data loaded successfully!');
+    } catch (err) {
+      console.error('Error fetching Airtable data:', err);
+      // Optional: show a fallback message on page
+    }
+  }
+
+  // Run on page load
+  window.addEventListener('load', loadVendorMenus);
+</script>
 
   <link rel="stylesheet" href="styles.css">
 </head>
